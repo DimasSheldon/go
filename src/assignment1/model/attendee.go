@@ -6,7 +6,7 @@ type Attendee struct {
 	Address    string
 	Occupation string
 	Reason     string
-	index      int
+	Index      int
 }
 
 type AttendeeList struct {

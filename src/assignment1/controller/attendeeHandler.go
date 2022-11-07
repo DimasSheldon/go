@@ -42,20 +42,30 @@ func (attendee *AttendeeListModel) AddAttendee(profile model.Attendee) []model.A
 
 func PrintAttendee(attendee model.Attendee) {
 	fmt.Println("---------------------------------------------")
+	fmt.Println("ID\t\t: ", attendee.ID)
 	fmt.Println("Name\t\t: ", attendee.Name)
 	fmt.Println("Address\t\t: ", attendee.Address)
 	fmt.Println("Occupation\t: ", attendee.Occupation)
 	fmt.Println("Reason\t\t: ", attendee.Reason)
+	fmt.Println("ID(index)\t: ", attendee.Index)
+}
+
+func ListAllAttendees(attendees []model.Attendee) {
+	for idx, attendee := range attendees {
+		attendee.Index = idx
+		PrintAttendee(attendee)
+	}
 }
 
 func FindAttendeeByName(attendees []model.Attendee, name string) {
 
 	notFound := 0
 	found := 0
-	for _, attendee := range attendees {
+	for idx, attendee := range attendees {
 		// if strings.TrimRight(name, "\n") == attendee.Name { /* Exact Name */
 		if strings.Contains(strings.ToLower(attendee.Name),
 			strings.ToLower(strings.TrimRight(name, "\n"))) { /* Similar Name */
+			attendee.Index = idx
 			PrintAttendee(attendee)
 			found++
 		} else {
@@ -74,10 +84,11 @@ func FindAttendeeByID(attendees []model.Attendee, id string) {
 
 	notFound := 0
 	found := 0
-	for _, attendee := range attendees {
+	for idx, attendee := range attendees {
 		// if strings.TrimRight(id, "\n") == attendee.Name { /* Exact Name */
 		if strings.Contains(strings.ToLower(attendee.ID),
 			strings.ToLower(strings.TrimRight(id, "\n"))) { /* Similar Name */
+			attendee.Index = idx
 			PrintAttendee(attendee)
 			found++
 		} else {
@@ -96,10 +107,11 @@ func FindAttendeeByAddressReason(attendees []model.Attendee, address string, rea
 
 	notFound := 0
 	found := 0
-	for _, attendee := range attendees {
+	for idx, attendee := range attendees {
 		// if strings.TrimRight(id, "\n") == attendee.Name { /* Exact x */
 		if strings.Contains(strings.ToLower(attendee.Address), strings.ToLower(strings.TrimRight(address, "\n"))) &&
 			strings.Contains(strings.ToLower(attendee.Reason), strings.ToLower(strings.TrimRight(reason, "\n"))) {
+			attendee.Index = idx
 			PrintAttendee(attendee)
 			found++
 		} else {

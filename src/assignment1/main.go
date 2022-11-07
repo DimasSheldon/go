@@ -74,9 +74,7 @@ func menuBackToMain() {
 }
 
 func menu1() {
-	for _, attendee := range attendees {
-		controller.PrintAttendee(attendee)
-	}
+	controller.ListAllAttendees(attendees)
 }
 
 func menu2() {
